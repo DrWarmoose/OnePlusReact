@@ -14,7 +14,6 @@ class RouteService {
           })
         .then(json => { 
             console.log("retrieved route list.");
-            console.log(json);
             return json;
         })
         .catch(error => {
@@ -32,7 +31,6 @@ class RouteService {
           })
         .then(json => { 
             console.log("retrieved route detail.");
-            console.log(json);
             return json;
         })
         .catch(error => {
@@ -40,7 +38,22 @@ class RouteService {
         });
     }
 
-    async TransferStop( stop, fromSymbol,toSymbol){
+    async getNearybyRoutes( stop ){
+        console.log('nearby routes for stop: ' + stop);
+        return fetch(this.config.NEARBY_URL + stop)
+        .then(response => {
+            return response.json();
+          })
+        .then( json => {
+            console.log('retrieved nearby routes.');
+            return json ;
+        })
+        .catch( error => {
+            console.error( 'get nearby route failed: '+ error );
+        });
+    }
+
+    async transferStop( stop, toSymbol, fromSymbol){
         console.log('transfer stop:' + stop + ' from ' + fromSymbol + " to " + toSymbol);
         var request = {
             stop : stop,
@@ -61,7 +74,6 @@ class RouteService {
         })
         .then(json => {
             console.log( 'transfer completed');
-            console.log(json);
             return json ;
         })
         .catch(error => {

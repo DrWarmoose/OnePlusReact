@@ -1,20 +1,21 @@
 import React from "react";
 import {
-  Paper,
   Card,
-  CardContent,
+  Grid,
   Typography
 } from "@material-ui/core";
+
+
+
 import "../index.css";
 
 const DriverName = ({driver}) => {
   return (
-    <Typography
-    align="left"
-    color="textSecondary"
-  >
-    Driver: {driver}
-  </Typography>);
+    <Grid item xs={6} className="RouteItem-Driver">
+    <Typography variant="button" color="textSecondary">
+     {driver}
+    </Typography>
+  </Grid>);
 }
 
 class RouteIndexItem extends React.Component 
@@ -25,26 +26,23 @@ class RouteIndexItem extends React.Component
     if ( this.props.item.driver && this.props.item.driver.length > 0){
       driverName = <DriverName driver={this.props.item.driver} />;
     }
-
-    return (
+   return (
       <div>
-        <Paper className="RouteItem-Root">
-          <Card className="RouteItem-Card">
-            <CardContent>
-              <Typography className="RouteItem-Title" align="left" color="primary">
+        <Card className="RouteItem-Card" >
+          <Grid container spacing={24}>
+            <Grid item xs={4}>
+            <Typography variant="h5" align="left" color="primary">
                 {this.props.item.symbol}
               </Typography>
-              <Typography
-                className="RouteItem-RouteName"
-                align="left"
-                color="textPrimary"
-              >
+            </Grid>
+            <Grid item xs={8}>
+              <Typography variant="h6" color="textPrimary" align="right">
                 {this.props.item.name}
               </Typography>
-              {driverName}
-            </CardContent>
+            </Grid>
+            {driverName}
+          </Grid>
           </Card>
-        </Paper>
       </div>
     );
   }

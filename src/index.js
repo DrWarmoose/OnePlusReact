@@ -9,6 +9,7 @@ class App extends React.Component{
     super(props);
     this.routeService = new RouteService();
     this.selectRoute = this.selectRoute.bind(this);
+    this.selectTransfer = this.selectTransfer.bind(this);
 
     this.state = {
       selectedRoute: null,
@@ -60,11 +61,13 @@ class App extends React.Component{
         this.setState({selectedRoute:route});
       })
   }
-  selectStop(){
-
-  }
-  selectTransfer(){
-
+  
+  selectTransfer(stop,from,to){
+      console.log( 'transfer stop ' + stop + ' from ' + from + ' to ' + to);
+      this.routeService.transferStop(stop,from,to).then( route => 
+        {
+          this.setState({selectedRoute:route});
+        } )
   }
 }
 

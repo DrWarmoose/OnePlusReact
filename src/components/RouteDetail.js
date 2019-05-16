@@ -16,10 +16,11 @@ class RouteDetail extends React.Component
   {
     if( this.props.route ){
       const stops =  this.props.route;
+      const transfer = this.props.transfer;
       return (
-      <div className="RouteItem-Scrollable">
-      {stops.map(n => {
-        return( <RouteDetailItem key={n.id} stop={n} />);
+      <div>
+      {stops && stops.map(n => {
+        return( <RouteDetailItem key={n.id} stop={n} transfer={transfer} />);
       })}
       </div>
     );

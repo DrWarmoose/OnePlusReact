@@ -12,6 +12,7 @@ class Dispatch extends React.Component
         const routes = this.props.routes ;
         const route = this.props.route ;
         const routeChanged = this.props.routeSelected;
+        const transferReq = this.props.transferSelected;
 
         return (
             <div className="Dispatch-Root">
@@ -22,7 +23,7 @@ class Dispatch extends React.Component
                     <RouteIndex routes={routes} changed={routeChanged} />
                   </Grid>
                   <Grid item xs={8} className="Dispatch-Scrollable">
-                    <RouteDetail route={route} />
+                    <RouteDetail route={route} transfer={transferReq} />
                   </Grid>
                 </Grid>
               </Paper>

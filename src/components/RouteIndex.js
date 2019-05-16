@@ -1,18 +1,40 @@
 import React from "react";
-import { withStyles } from "@material-ui/core/styles";
 import RouteIndexItem from "./RouteIndexItem";
+import {GridList,GridListTile} from "@material-ui/core";
+import "../index.css";
 
-const styles = {
-  root: { flexGrow: 1 },
-  paper: {}
-};
+class RouteIndex extends React.Component 
+{
+  constructor(props) {
+    super(props);
+    this.state = { routes: [] };
+  }
+  
+  handleClick(ev) {
+    this.props.changed(ev);
+  }
 
-const RouteIndex = ({ classes }) => {
-  return (
-    <div className={classes.root}>
-      <RouteIndexItem />
-    </div>
-  );
-};
+  render(){
+    const items = this.props.routes;
 
-export default withStyles(styles)(RouteIndex);
+    if ( items ){
+      return (
+        <GridList cols={1}>
+          {items.map(n => {
+            return(
+            <GridListTile rows={1} className="RouteIndexTile" key={n.symbol}
+              onClick={ () => {this.handleClick(n.symbol);}}>
+              <RouteIndexItem key={n.symbol} item={n} />
+            </GridListTile>
+            );
+          })}
+        </GridList>
+      );
+        }
+        else {
+          return (<h1>Loading...</h1>);
+        }
+  }
+}
+
+export default (RouteIndex);

@@ -1,66 +1,52 @@
 import React from "react";
 import {
-  withStyles,
   Paper,
   Card,
   CardContent,
   Typography
 } from "@material-ui/core";
+import "../index.css";
 
-const styles = theme => ({
-  root: {
-    ...theme.mixins.gutters(),
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2
-  },
-  card: {
-    minWidth: 255
-  },
-  title: {
-    fontSize: 26,
-    fontWeight: "bold"
-  },
-  routeName: {
-    fontSize: 16
-  },
-  content: {
-    backgroundColor: "#333",
-    height: "100%"
-  },
-  scrollable: {
-    height: "100%",
-    overflowX: "hidden",
-    overflowY: "scroll"
-  }
-});
-
-const RouteIndexItem = ({ classes }) => {
+const DriverName = ({driver}) => {
   return (
-    <div>
-      <Paper className={classes.root}>
-        <Card className={classes.card}>
-          <CardContent>
-            <Typography className={classes.title} align="left" color="primary">
-              STX-01
-            </Typography>
-            <Typography
-              className={classes.routeName}
-              align="left"
-              color="textPrimary"
-            >
-              San Antonio - 78201
-            </Typography>
-            <Typography
-              className={classes.routeName}
-              align="left"
-              color="textSecondary"
-            >
-              Driver: Alberto Gonzalez
-            </Typography>
-          </CardContent>
-        </Card>
-      </Paper>
-    </div>
-  );
-};
-export default withStyles(styles)(RouteIndexItem);
+    <Typography
+    align="left"
+    color="textSecondary"
+  >
+    Driver: {driver}
+  </Typography>);
+}
+
+class RouteIndexItem extends React.Component 
+{
+  render(){
+
+    var driverName ;
+    if ( this.props.item.driver && this.props.item.driver.length > 0){
+      driverName = <DriverName driver={this.props.item.driver} />;
+    }
+
+    return (
+      <div>
+        <Paper className="RouteItem-Root">
+          <Card className="RouteItem-Card">
+            <CardContent>
+              <Typography className="RouteItem-Title" align="left" color="primary">
+                {this.props.item.symbol}
+              </Typography>
+              <Typography
+                className="RouteItem-RouteName"
+                align="left"
+                color="textPrimary"
+              >
+                {this.props.item.name}
+              </Typography>
+              {driverName}
+            </CardContent>
+          </Card>
+        </Paper>
+      </div>
+    );
+  }
+}
+export default (RouteIndexItem);

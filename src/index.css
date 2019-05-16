@@ -11,3 +11,103 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.RouteIndex-List
+{
+  background-color: #742;
+  overflow-y: scroll;
+}
+
+.RouteIndexTile{
+  max-height: 100px;
+  background-color: #555;
+}
+
+.Dispatch-Root {
+  display: "flex";
+  flex-direction: column;
+  height: 100vh;
+  background-color: "grey";
+  flex: 1;
+}
+
+.Dispatch-Container
+{
+  max-height: 100vh;
+}
+
+.Dispatch-Content {
+  background-color: "#333";
+  height: "100%";
+}
+
+.Dispatch-Scrollable {
+  height: 95vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.RouteItem-Root {
+    flex: 1;
+}
+
+.RouteItem-Card {
+  min-width: 200;
+  max-width:  220;
+}
+
+.RouteItem-Title {
+  font-size: 25;
+  font-weight: bold;
+}
+
+.RouteItem-RouteName {
+  font-size: 16;
+}
+
+.RouteItem-Content {
+  background-color: #333;
+  height: "100%";
+}
+
+.RouteItem-Scrollable {
+  height: "100%";
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.RouteDetail-Root
+{
+  padding-top:2;
+  padding-bottom: 2;
+}
+
+.RouteDetail-Title
+{
+  font-size: 18;
+  font-weight: bold;
+}
+
+.RouteDetail-Address
+{
+  font-size: 16;
+  font-weight: bold;
+}
+
+.RouteDetail-Content
+{
+  background-color: #333;
+  height: 100%;
+}
+
+.RouteDetail-RouteName{
+  font-size: 16;
+}
+
+.RouteDetail-Column{
+  flex-basis: 33.33%;
+}
+
+.RouteDetail-TitleColumn{
+  flex-basis: 100%;
+}

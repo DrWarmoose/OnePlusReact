@@ -1,18 +1,33 @@
 import React from "react";
-import { withStyles } from "@material-ui/core/styles";
 import RouteDetailItem from "./RouteDetailItem";
 
-const styles = {
-  root: { flexGrow: 1 },
-  paper: {}
-};
+class RouteDetail extends React.Component
+{
+  constructor(props) {
+    super(props);
+    this.state = { route: {} };
+  }
 
-const RouteDetail = ({ classes }) => {
-  return (
-    <div className={classes.root}>
-      <RouteDetailItem />
-    </div>
-  );
-};
+  handleClick(ev) {
+    alert(ev);
+  }
 
-export default withStyles(styles)(RouteDetail);
+  render()
+  {
+    if( this.props.route ){
+      const stops =  this.props.route;
+      return (
+      <div className="RouteItem-Scrollable">
+      {stops.map(n => {
+        return( <RouteDetailItem key={n.id} stop={n} />);
+      })}
+      </div>
+    );
+    }
+    else{
+      return (<h1>loading...</h1>);
+    }
+  }
+}
+
+export default (RouteDetail);

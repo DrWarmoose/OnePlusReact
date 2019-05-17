@@ -1,5 +1,6 @@
 import React from "react";
 import RouteDetailItem from "./RouteDetailItem";
+import "../index.css";
 
 class RouteDetail extends React.Component
 {
@@ -18,7 +19,7 @@ class RouteDetail extends React.Component
       const stops =  this.props.route;
       const transfer = this.props.transfer;
       return (
-      <div>
+      <div className="RouteDetail-Root">
       {stops && stops.map(n => {
         return( <RouteDetailItem key={n.id} stop={n} transfer={transfer} />);
       })}

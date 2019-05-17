@@ -7,12 +7,14 @@ import {
   ExpansionPanelSummary,
   ExpansionPanelDetails,
   ExpansionPanelActions,
+  Grid,
   List, ListItem, ListItemText,
   Typography
 } from "@material-ui/core";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import RouteService from '../gateway/RouteService';
 import "../index.css";
+import { BingMap } from "./BingMap";
 
 
 class RouteDetailItem extends React.Component
@@ -25,7 +27,8 @@ class RouteDetailItem extends React.Component
       stop: null,
       transfer: {},
       hidden: true,
-      nearby: []
+      nearby: [],
+      expanded: false
     };
   }
 
@@ -51,26 +54,46 @@ class RouteDetailItem extends React.Component
     this.setState({open:false});
   }
 
+  handleExpanded = (ev,expanded,stop) => {
+    console.log( 'dude is :' + expanded);
+      this.setState({expanded:expanded});
+  }
+
   render(){
     const stop = this.props.stop;
     const near = this.state.nearby;
+    const exp = this.state.expanded;
+    console.log( 'rendering detail ' + exp);
 
     return (
       <div className='RouteDetail-Root'>
-        <ExpansionPanel className='RouteDetail-Root'>
+      <Divider />
+        <ExpansionPanel className='RouteDetail-Root' 
+          onChange={ (e,o)=> {this.handleExpanded(e,o,stop);}}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <div>
-              <Typography>{stop.name}</Typography>
+              <Typography color="primary">{stop.name}</Typography>
               <Typography>{stop.address}</Typography>
             </div>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <div className='RouteDetail-Column'>
-              <Typography>Airbill: 12309819</Typography>
-            </div>
-            <div className='RouteDetail-Column'>
-              <Typography>Special Instructions:</Typography>
-            </div>
+            <Grid container>
+              <Grid item xs={8}>
+                 <Typography>Airbills:&nbsp;&nbsp;{stop.airBills}</Typography>
+              </Grid>
+              <Grid item xs={4}>
+                 <Typography>Service Level:&nbsp;&nbsp;{stop.service}</Typography>
+              </Grid>
+              <Grid item xs={8}>
+                 <Typography>Pick-up/Delivery:&nbsp;&nbsp;{stop.type}</Typography>
+              </Grid>
+              <Grid item xs={4}>
+                 <Typography>Signature Required:&nbsp;&nbsp;{stop.signature}</Typography>
+              </Grid>
+              <Grid item xs={8}>
+                <BingMap stop={stop} show={exp} />
+              </Grid>
+            </Grid>
           </ExpansionPanelDetails>
           <Divider />
           <ExpansionPanelActions>
